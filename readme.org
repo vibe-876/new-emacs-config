@@ -6,6 +6,29 @@
 #+startup: overview
 
 
+* Introduction.
+Welcome to my config file.
+You're welcome to use any bits of this if you want to, but I can't promise that it will work :) .
+
+This is a [[https://en.wikipedia.org/wiki/Literate_programming][literate file]], that is, the program it documents is generated from this file -- I never edit the source file directly, only this file.
+The file can be tangled (ie the source code can be written into [[file:init.el][init.el]]) by running
+#+begin_src elisp :tangle no
+  (org-babel-tangle)
+#+end_src
+
+Note that specific bits of code can be ignored by the tangling, such as the above.
+I prefer this approach to programming, because I always aim to writing programs to me is first and foremost, an art.
+Thus, I want people to be able to actually read my work.
+
+
+The following is an example of this style of programming:
+
+This does 2 things:
+- disable the standard package system starting
+- bootstrap [[https://github.com/radian-software/straight.el][straight.el]]
+
+Straight is a package manager for emacs, and I prefer it to the standard one.
+It lets me clone packages directly from git repos, which I prefer to the standard method.
 #+begin_src elisp
   (setq package-enable-at-startup nil)
 
@@ -24,8 +47,15 @@
 
   (straight-use-package 'use-package)
   (setq straight-use-package-by-default t
-  	use-package-always-ensure nil)
+        use-package-always-ensure nil)
+#+end_src
 
+
+From this point onwards, this document will seperated into three sections: Reading, Writing, and Miscellaneous.
+
+
+* Reading
+#+begin_src elisp
   (use-package magit)
 
   (use-package ef-themes
@@ -37,3 +67,7 @@
   (menu-bar-mode -1)
   (scroll-bar-mode -1)
 #+end_src
+
+* Writing
+
+* Miscellaneous
