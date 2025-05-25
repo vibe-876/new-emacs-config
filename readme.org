@@ -11,7 +11,7 @@ Welcome to my config file.
 You're welcome to use any bits of this if you want to, but I can't promise that it will work :) .
 
 This is a [[https://en.wikipedia.org/wiki/Literate_programming][literate file]], that is, the program it documents is generated from this file -- I never edit the source file directly, only this file.
-The file can be tangled (ie the source code can be written into [[file:init.el][init.el]]) by running
+The file can be tangled (IE the source code can be written into [[file:init.el][init.el]]) by running
 #+begin_src elisp :tangle no
   (org-babel-tangle)
 #+end_src
@@ -21,13 +21,13 @@ I prefer this approach to programming, because I always aim to writing programs 
 Thus, I want people to be able to actually read my work.
 
 
-The following is an example of this style of programming:
+* Package Management
 
 This does 2 things:
 - disable the standard package system starting
 - bootstrap [[https://github.com/radian-software/straight.el][straight.el]]
 
-Straight is a package manager for emacs, and I prefer it to the standard one.
+Straight is a package manager for Emacs, and I prefer it to the standard one.
 It lets me clone packages directly from git repos, which I prefer to the standard method.
 #+begin_src elisp
   (setq package-enable-at-startup nil)
@@ -51,13 +51,18 @@ It lets me clone packages directly from git repos, which I prefer to the standar
 #+end_src
 
 
-From this point onwards, this document will seperated into three sections: Reading, Writing, and Miscellaneous.
+From this point onwards, this document will separated into two sections: Reading, and Writing.
 
 
 * Reading
 #+begin_src elisp
   (use-package magit)
+#+end_src
 
+
+I use a collection of themes called [[https://github.com/protesilaos/ef-themes][ef-themes]], created by Prot.
+I also like to disable the tool bar, menu bar, and scroll bar, because I work almost entirely from the keyboard, and find them distracting.
+#+begin_src elisp
   (use-package ef-themes
     :defer nil
     :config
@@ -69,5 +74,9 @@ From this point onwards, this document will seperated into three sections: Readi
 #+end_src
 
 * Writing
+As I am a lisp programmer, paredit is essential for me.
+#+begin_src elisp
+  (use-package paredit
+    :hook ((emacs-lisp-mode . enable-paredit-mode)))
+#+end_src
 
-* Miscellaneous
