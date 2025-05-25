@@ -27,4 +27,13 @@
   	use-package-always-ensure nil)
 
   (use-package magit)
+
+  (use-package ef-themes
+    :defer nil
+    :config
+    (load-theme 'ef-symbiosis t))
+
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
+  (scroll-bar-mode -1)
 #+end_src
