@@ -6,7 +6,7 @@
 #+startup: overview
 
 
-* Introduction.
+* Introduction
 Welcome to my config file.
 You're welcome to use any bits of this if you want to, but I can't promise that it will work :) .
 
@@ -19,7 +19,6 @@ The file can be tangled (IE the source code can be written into [[file:init.el][
 Note that specific bits of code can be ignored by the tangling, such as the above.
 I prefer this approach to programming, because I always aim to writing programs to me is first and foremost, an art.
 Thus, I want people to be able to actually read my work.
-
 
 * Package Management
 
@@ -53,7 +52,6 @@ It lets me clone packages directly from git repos, which I prefer to the standar
 
 From this point onwards, this document will separated into two sections: Reading, and Writing.
 
-
 * Reading
 #+begin_src elisp
   (use-package magit)
@@ -74,9 +72,27 @@ I also like to disable the tool bar, menu bar, and scroll bar, because I work al
 #+end_src
 
 * Writing
-As I am a lisp programmer, paredit is essential for me.
+As I am a lisp programmer, ~paredit~ is essential for me.
+~paredit~ does "electric brackets", which for me at least, makes lisp feel completely natural, more so than any other language for thinking, in most cases at least.
 #+begin_src elisp
   (use-package paredit
     :hook ((emacs-lisp-mode . enable-paredit-mode)))
 #+end_src
 
+~rainbow-delimiters~ is another really useful one.
+It (as the name would imply) puts pretty colours onto the brackets, which makes lisp /really/ easy to read.
+Paired with ~paredit~, this makes lisp a breeze.
+
+#+begin_src elisp
+  (use-package rainbow-delimiters
+    :defer nil
+    :hook ((emacs-lisp-mode . rainbow-delimiters-mode)))
+#+end_src
+
+
+I am bad at spelling.
+I still think it's important though, so I want to keep ~flyspell~ up for when I'm writing in ~org mode~.
+#+begin_src elisp
+  ;(add-hook org-mode-hook flyspell-mode)
+
+#+end_src
