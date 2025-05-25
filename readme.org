@@ -76,7 +76,9 @@ As I am a lisp programmer, ~paredit~ is essential for me.
 ~paredit~ does "electric brackets", which for me at least, makes lisp feel completely natural, more so than any other language for thinking, in most cases at least.
 #+begin_src elisp
   (use-package paredit
-    :hook ((emacs-lisp-mode . enable-paredit-mode)))
+    :hook ((emacs-lisp-mode . enable-paredit-mode)
+  	 (clojure-mode    . enable-paredit-mode))
+    :after (cider))
 #+end_src
 
 ~rainbow-delimiters~ is another really useful one.
@@ -86,9 +88,14 @@ Paired with ~paredit~, this makes lisp a breeze.
 #+begin_src elisp
   (use-package rainbow-delimiters
     :defer nil
-    :hook ((emacs-lisp-mode . rainbow-delimiters-mode)))
+    :hook ((emacs-lisp-mode . rainbow-delimiters-mode)
+  	 (clojure-mode    . rainbow-delimiters-mode))
+    :after (cider))
 #+end_src
 
+#+begin_src elisp
+  (use-package cider)
+#+end_src
 
 I am bad at spelling.
 I still think it's important though, so I want to keep ~flyspell~ up for when I'm writing in ~org mode~.
