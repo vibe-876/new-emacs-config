@@ -16,6 +16,7 @@ The file can be tangled (IE the source code can be written into [[file:init.el][
   (org-babel-tangle)
 #+end_src
 
+Alternatively, the elisp file this tangles to is also in this repo, for easy loading, in case you want to use my config (for some reason).
 Note that specific bits of code can be ignored by the tangling, such as the above.
 I prefer this approach to programming, because I always aim to writing programs to me is first and foremost, an art.
 Thus, I want people to be able to actually read my work.
@@ -134,6 +135,7 @@ As said, bad solution.
       (message "BBC iplayer stuff removed.")))
 
 #+end_src
+
 * Writing
 As I am a lisp programmer, ~paredit~ is essential for me.
 ~paredit~ does "electric brackets", which for me at least, makes lisp feel completely natural, more so than any other language for thinking, in most cases at least.
