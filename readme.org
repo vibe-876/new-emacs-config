@@ -93,8 +93,25 @@ Paired with ~paredit~, this makes lisp a breeze.
     :after (cider))
 #+end_src
 
+[[https://cider.mx/][Cider]] is a package for Clojure (my beloved <3), which extends Emacs support for it.
+It boosts the interactivity for Clojure, so that we can do lisp in the most enjoyable way possible.
+
+It gives:
+- a REPL (Read Evaluate Print Loop), that supports stuff like [[https://leiningen.org/][Leiningen]]
+- a really good debugger
+- definition look ups
+- good support for testing
+
+And so much more that I love.
+
 #+begin_src elisp
   (use-package cider)
+#+end_src
+
+
+[[https://rocq-prover.org/][Rocq]] (formally coq)
+#+begin_src elisp
+  (use-package proof-general)
 #+end_src
 
 I am bad at spelling.
