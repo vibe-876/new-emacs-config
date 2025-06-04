@@ -54,6 +54,7 @@ It lets me clone packages directly from git repos, which I prefer to the standar
 From this point onwards, this document will separated into two sections: Reading, and Writing.
 
 * Reading
+[[https://magit.vc/][Magit]] is an amazing git porcelain.
 #+begin_src elisp
   (use-package magit)
 #+end_src
