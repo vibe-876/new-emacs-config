@@ -52,16 +52,14 @@
 	    ("https://churchofturing.github.io/feed.xml" tech blog)
 	    ;; Leadhead
 	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UC3_kehZbfRz-KrjXIqeIiPw" blog video)
-	    ;; Helluva Boss
-	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCzfyYtgvkx5mLy8nlLlayYg" video show)
-	    ;; oliSUNvia
-	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCVHxJghKAB_kA_5LMM8MD3w" video phil)
 	    ;; Wendigoon
 	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UC3cpN6gcJQqcCM6mxRUo_dA" video spooky)
 	    ;; ABSTRACT
 	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCIPfjC8FVLdul4-35JekB1g" video spooky)
 	    ;; SOG
 	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCtMVHI3AJD4Qk4hcbZnI9ZQ" video blog)
+	    ;; Philosophy Tube
+	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UC2PA-AKmVpU6NKCGtZq_rKQ" video phil)
 	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCctWUfejRybO1cCT6DmIRqQ" video speedrun))))
 
 (defun cam/elfeed-remove-iplayer ()
@@ -77,6 +75,8 @@ just the articles. This marks them as read."
     (elfeed-search-clear-filter)
     (message "BBC iplayer stuff removed.")))
 
+(global-set-key (kbd "C-c a") 'org-agenda)
+
 (use-package paredit
   :hook ((emacs-lisp-mode . enable-paredit-mode)
 	 (clojure-mode    . enable-paredit-mode))
@@ -91,5 +91,7 @@ just the articles. This marks them as read."
 (use-package cider)
 
 (use-package proof-general)
+
+(use-package haskell-mode)
 
 ;(add-hook org-mode-hook flyspell-mode)
