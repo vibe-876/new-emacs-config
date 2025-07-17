@@ -43,19 +43,14 @@
 	    ("https://izzys.casa/index.xml" blog tech prog)
 	    ("https://faultlore.com/blah/rss.xml" blog tech prog)
 	    ("https://welltypedwit.ch/rss.xml" tech blog)
-	    ("https://feeds.bbci.co.uk/news/bbcindepth/rss.xml" news bbc)
-	    ("https://www.quantamagazine.org/feed/" sci news)
 	    ("https://feeds.libsyn.com/499093/rss" tech podcast)
 	    ("http://hackaday.libsyn.com/rss" tech podcast)
 	    ("https://rustacean-station.org/podcast.rss" tech prog podcast)
 	    ("https://risky.biz/feeds/risky-business-news/" tech security podcast)
-	    ("https://churchofturing.github.io/feed.xml" tech blog)
 	    ;; Leadhead
 	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UC3_kehZbfRz-KrjXIqeIiPw" blog video)
 	    ;; Wendigoon
 	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UC3cpN6gcJQqcCM6mxRUo_dA" video spooky)
-	    ;; ABSTRACT
-	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCIPfjC8FVLdul4-35JekB1g" video spooky)
 	    ;; SOG
 	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCtMVHI3AJD4Qk4hcbZnI9ZQ" video blog)
 	    ;; Philosophy Tube
@@ -92,6 +87,15 @@ just the articles. This marks them as read."
 
 (use-package proof-general)
 
-(use-package haskell-mode)
+(use-package haskell-mode
+  :bind
+  (:map haskell-mode-map ("C-c C-c" . haskell-compile))
+  (:map haskell-cabal-mode-map ("C-c C-c" . haskell-compile))
+  :config
+  (let ((cam-ghcup-path (expand-file-name "~/.ghcup/bin")))
+    (setenv "PATH" (concat (getenv "PATH") ":" cam-ghcup-path))
+    (add-to-list 'exec-path cam-ghcup-path)))
 
 ;(add-hook org-mode-hook flyspell-mode)
+
+(use-package markdown-mode)
