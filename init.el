@@ -22,7 +22,8 @@
 (use-package ef-themes
   :defer nil
   :config
-  (load-theme 'ef-symbiosis t))
+  (load-theme 'ef-symbiosis t)
+  (set-frame-parameter nil 'alpha-background 98))
 
 (tool-bar-mode -1)
 (menu-bar-mode -1)
