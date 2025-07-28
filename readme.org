@@ -66,7 +66,7 @@ I also like to disable the tool bar, menu bar, and scroll bar, because I work al
   (use-package ef-themes
     :defer nil
     :config
-    (load-theme 'ef-symbiosis t)
+    (load-theme 'ef-dream t)
     (set-frame-parameter nil 'alpha-background 98))
 
   (tool-bar-mode -1)
@@ -85,18 +85,14 @@ As it would happen, I have a few extra procedures written for it.
     :config
     (setq elfeed-feeds
   	  '(("https://planet.emacslife.com/atom.xml" blog emacs)
-  	    ("https://summeremacs.github.io/posts/index.xml" blog emacs)
   	    ("https://xkcd.com/rss.xml" comic)
   	    ("https://www.smbc-comics.com/comic/rss" comic)
-  	    ("https://www.monkeyuser.com/index.xml" comic)
   	    ("https://archlinux.org/feeds/news/" arch linux tech)
   	    ("https://wolfgirl.dev/blog/rss.xml" blog tech prog)
   	    ("https://izzys.casa/index.xml" blog tech prog)
   	    ("https://faultlore.com/blah/rss.xml" blog tech prog)
+  	    ("https://nexy.blog/feed_rss_created.xml" blog tech)
   	    ("https://welltypedwit.ch/rss.xml" tech blog)
-  	    ("https://feeds.libsyn.com/499093/rss" tech podcast)
-  	    ("http://hackaday.libsyn.com/rss" tech podcast)
-  	    ("https://rustacean-station.org/podcast.rss" tech prog podcast)
   	    ("https://risky.biz/feeds/risky-business-news/" tech security podcast)
   	    ;; Leadhead
   	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UC3_kehZbfRz-KrjXIqeIiPw" blog video)
