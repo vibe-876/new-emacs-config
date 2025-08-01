@@ -105,7 +105,13 @@ As it would happen, I have a few extra procedures written for it.
   	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCctWUfejRybO1cCT6DmIRqQ" video speedrun))))
 #+end_src
 
+Elpher is a gopher and gemini client.
+I've been getting disillusioned with the web recently, and both gopher and gemini have been a breath of fresh air.
+#+begin_src elisp
+  (use-package elpher)
+#+end_src
 
+Open the org agenda
 #+begin_src elisp
   (global-set-key (kbd "C-c a") 'org-agenda)
 #+end_src

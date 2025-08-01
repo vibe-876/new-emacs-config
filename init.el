@@ -54,6 +54,8 @@
 	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UC2PA-AKmVpU6NKCGtZq_rKQ" video phil)
 	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCctWUfejRybO1cCT6DmIRqQ" video speedrun))))
 
+(use-package elpher)
+
 (global-set-key (kbd "C-c a") 'org-agenda)
 
 (use-package paredit
