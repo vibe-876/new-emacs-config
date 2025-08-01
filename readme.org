@@ -105,27 +105,6 @@ As it would happen, I have a few extra procedures written for it.
   	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCctWUfejRybO1cCT6DmIRqQ" video speedrun))))
 #+end_src
 
-~cam/elfeed-remove-iplayer~ is a really disgusting procedure, that removes iplayer and sounds RSS entries from my feed.
-There is defiantly a more elegant way to do this.
-However, for now this works.
-
-Literally all that it does is, first look at all bbc things that don't have article in the title somewhere, then just mark everything still there as read.
-As said, bad solution.
-#+begin_src elisp
-  (defun cam/elfeed-remove-iplayer ()
-    "I don't want iplayer or sounds from bbc,
-  just the articles. This marks them as read."
-    (interactive)
-    (let ((new-filter "@1-month-ago +unread +bbc !article"))
-
-      (setq elfeed-search-filter new-filter)
-      (elfeed-search-update :force)
-      (mark-whole-buffer)
-      (elfeed-search-untag-all-unread)
-      (elfeed-search-clear-filter)
-      (message "BBC iplayer stuff removed.")))
-
-#+end_src
 
 #+begin_src elisp
   (global-set-key (kbd "C-c a") 'org-agenda)

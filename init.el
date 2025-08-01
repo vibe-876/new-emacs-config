@@ -54,19 +54,6 @@
 	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UC2PA-AKmVpU6NKCGtZq_rKQ" video phil)
 	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCctWUfejRybO1cCT6DmIRqQ" video speedrun))))
 
-(defun cam/elfeed-remove-iplayer ()
-  "I don't want iplayer or sounds from bbc,
-just the articles. This marks them as read."
-  (interactive)
-  (let ((new-filter "@1-month-ago +unread +bbc !article"))
-
-    (setq elfeed-search-filter new-filter)
-    (elfeed-search-update :force)
-    (mark-whole-buffer)
-    (elfeed-search-untag-all-unread)
-    (elfeed-search-clear-filter)
-    (message "BBC iplayer stuff removed.")))
-
 (global-set-key (kbd "C-c a") 'org-agenda)
 
 (use-package paredit
