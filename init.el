@@ -34,7 +34,12 @@
   :bind ("C-c e" . elfeed)
   :config
   (setq elfeed-feeds
-	  '(("https://planet.emacslife.com/atom.xml" blog emacs)
+	  '(("https://irreal.org/blog/?feed=rss2" blog emacs)
+	    ("http://yummymelon.com/devnull/feeds/all.atom.xml" blog emacs)
+	    ("https://protesilaos.com/codelog.xml" blog emacs)
+	    ("https://protesilaos.com/poems.xml" blog poems)
+	    ("https://protesilaos.com/commentary.xml" blog life)
+	    ("https://shaiyaj.github.io/notes/feed.xml" blog)
 	    ("https://xkcd.com/rss.xml" comic)
 	    ("https://www.smbc-comics.com/comic/rss" comic)
 	    ("https://archlinux.org/feeds/news/" arch linux tech)
