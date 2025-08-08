@@ -121,6 +121,10 @@ Open the org agenda
   (global-set-key (kbd "C-c a") 'org-agenda)
 #+end_src
 
+#+begin_src elisp
+  (ido-mode 1)
+#+end_src
+
 * Writing
 As I am a lisp programmer, ~paredit~ is essential for me.
 ~paredit~ does "electric brackets", which for me at least, makes lisp feel completely natural, more so than any other language for thinking, in most cases at least.

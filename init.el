@@ -63,6 +63,8 @@
 
 (global-set-key (kbd "C-c a") 'org-agenda)
 
+(ido-mode 1)
+
 (use-package paredit
   :hook ((emacs-lisp-mode . enable-paredit-mode)
 	 (clojure-mode    . enable-paredit-mode))
