@@ -52,6 +52,7 @@ It lets me clone packages directly from git repos, which I prefer to the standar
 
 
 From this point onwards, this document will separated into two sections: Reading, and Writing.
+I've chosen to lay the file out like this because the way I see it, everything that a text editor does can be described by these two operations.
 
 * Reading
 [[https://magit.vc/][Magit]] is an amazing git porcelain.
@@ -78,6 +79,7 @@ I also like to disable the tool bar, menu bar, and scroll bar, because I work al
 [[https://github.com/skeeto/elfeed][elfeed]] is a [[https://en.wikipedia.org/wiki/Rss][RSS]] reader for Emacs.
 It is the best RSS reader I have ever used (which is admittedly a rather short list); it's got some really good tagging and searching filters, and far more importantly, I can easily extend it with elisp.
 As it would happen, I have a few extra procedures written for it.
+I find RSS to be a much nicer way of interacting with the web than the modern alternative, I'd recommend giving it a try if you've not before.
 #+begin_src elisp
   (use-package elfeed
     :defer t
@@ -112,6 +114,7 @@ As it would happen, I have a few extra procedures written for it.
 
 Elpher is a gopher and gemini client.
 I've been getting disillusioned with the web recently, and both gopher and gemini have been a breath of fresh air.
+Gopher and gemini are both alternate communication protocols for the internet, and much like RSS, I'd recommend giving them a shot at least once in your life.
 #+begin_src elisp
   (use-package elpher)
 #+end_src
@@ -121,6 +124,7 @@ Open the org agenda
   (global-set-key (kbd "C-c a") 'org-agenda)
 #+end_src
 
+~ido-mode~ changes buffer searching and switching, making it a lot more efficient.
 #+begin_src elisp
   (ido-mode 1)
 #+end_src
@@ -131,8 +135,9 @@ As I am a lisp programmer, ~paredit~ is essential for me.
 #+begin_src elisp
   (use-package paredit
     :hook ((emacs-lisp-mode . enable-paredit-mode)
-  	 (clojure-mode    . enable-paredit-mode))
-    :after (cider))
+  	 (clojure-mode    . enable-paredit-mode)
+  	 (scheme-mode     . enable-paredit-mode))
+    :after (cider geiser-guile))
 #+end_src
 
 ~rainbow-delimiters~ is another really useful one.
@@ -143,7 +148,8 @@ Paired with ~paredit~, this makes lisp a breeze.
   (use-package rainbow-delimiters
     :defer nil
     :hook ((emacs-lisp-mode . rainbow-delimiters-mode)
-  	 (clojure-mode    . rainbow-delimiters-mode))
+  	 (clojure-mode    . rainbow-delimiters-mode)
+  	 (scheme-mode     . rainbow-delimiters-mode))
     :after (cider))
 #+end_src
 
@@ -160,6 +166,15 @@ And so much more that I love.
 
 #+begin_src elisp
   (use-package cider)
+#+end_src
+
+[[https://www.nongnu.org/geiser/][Geiser]] is like Cider or [[https://github.com/joaotavora/sly][Sly]], but for generic schemes.
+I've got the [[https://www.gnu.org/software/guile/][Guile]] version installed, because that's the scheme that I use.
+
+[[http://xahlee.info/comp/wizard_book.html][Have you read your SICP today?]]
+#+begin_src elisp
+  (use-package geiser-guile
+    :hook ((scheme-mode . geiser-mode)))
 #+end_src
 
 
@@ -180,13 +195,7 @@ Haskell is a beautiful declarative, lazy, and functional programming language.
       (add-to-list 'exec-path cam-ghcup-path)))
 #+end_src
 
-I am bad at spelling.
-I still think it's important though, so I want to keep ~flyspell~ up for when I'm writing in ~org mode~.
-#+begin_src elisp
-  ;(add-hook org-mode-hook flyspell-mode)
-
-#+end_src
-
+I rarely use [[https://www.markdownguide.org/][markdown]] myself, but I have a few friends that do, so I keep this installed
 #+begin_src elisp
   (use-package markdown-mode)
 #+end_src

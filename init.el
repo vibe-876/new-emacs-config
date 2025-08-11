@@ -67,16 +67,21 @@
 
 (use-package paredit
   :hook ((emacs-lisp-mode . enable-paredit-mode)
-	 (clojure-mode    . enable-paredit-mode))
-  :after (cider))
+	 (clojure-mode    . enable-paredit-mode)
+	 (scheme-mode     . enable-paredit-mode))
+  :after (cider geiser-guile))
 
 (use-package rainbow-delimiters
   :defer nil
   :hook ((emacs-lisp-mode . rainbow-delimiters-mode)
-	 (clojure-mode    . rainbow-delimiters-mode))
+	 (clojure-mode    . rainbow-delimiters-mode)
+	 (scheme-mode     . rainbow-delimiters-mode))
   :after (cider))
 
 (use-package cider)
+
+(use-package geiser-guile
+  :hook ((scheme-mode . geiser-mode)))
 
 (use-package proof-general)
 
@@ -89,6 +94,6 @@
     (setenv "PATH" (concat (getenv "PATH") ":" cam-ghcup-path))
     (add-to-list 'exec-path cam-ghcup-path)))
 
-;(add-hook org-mode-hook flyspell-mode)
+(add-hook org-mode-hook flyspell-mode)
 
 (use-package markdown-mode)
