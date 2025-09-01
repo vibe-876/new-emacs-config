@@ -1,3 +1,4 @@
+
 :PROPERTIES:
 :header-args: :session init :tangle init.el
 :END:
@@ -119,11 +120,6 @@ Gopher and gemini are both alternate communication protocols for the internet, a
   (use-package elpher)
 #+end_src
 
-Open the org agenda
-#+begin_src elisp
-  (global-set-key (kbd "C-c a") 'org-agenda)
-#+end_src
-
 ~ido-mode~ changes buffer searching and switching, making it a lot more efficient.
 #+begin_src elisp
   (ido-mode 1)
@@ -137,7 +133,7 @@ As I am a lisp programmer, ~paredit~ is essential for me.
     :hook ((emacs-lisp-mode . enable-paredit-mode)
   	 (clojure-mode    . enable-paredit-mode)
   	 (scheme-mode     . enable-paredit-mode))
-    :after (cider geiser-guile))
+    :after (cider))
 #+end_src
 
 ~rainbow-delimiters~ is another really useful one.
@@ -174,7 +170,7 @@ I've got the [[https://www.gnu.org/software/guile/][Guile]] version installed, b
 [[http://xahlee.info/comp/wizard_book.html][Have you read your SICP today?]]
 #+begin_src elisp
   (use-package geiser-guile
-    :hook ((scheme-mode . geiser-mode)))
+    :hook ((scheme-mode . geiser)))
 #+end_src
 
 
@@ -193,6 +189,29 @@ Haskell is a beautiful declarative, lazy, and functional programming language.
     (let ((cam-ghcup-path (expand-file-name "~/.ghcup/bin")))
       (setenv "PATH" (concat (getenv "PATH") ":" cam-ghcup-path))
       (add-to-list 'exec-path cam-ghcup-path)))
+#+end_src
+
+Where to begin with Org Mode...
+[[https://orgmode.org/][Org]] is -- at its simplest -- a markup language that's pretty good at scheduling and literate programming.
+If you've never given it a shot, I'd recommend trying it.
+#+begin_src elisp
+  (use-package org
+    :straight nil
+    :ensure nil
+    :bind (("C-c a" . org-agenda)
+  	 ("C-c c" . org-capture))
+    :config
+    (setq org-directory (concat (getenv "HOME") "/Documents/Agenda/")
+  	org-agenda-files (list org-directory)
+  	org-todo-keywords '((sequence "TODO(t)" "WAIT(w!)" "|" "CANCEL(c!)" "DONE(d!)"))
+  	org-default-notes-file (concat (car org-agenda-files) "notes.org")
+          org-capture-templates '(("t" "Todo" entry (file org-default-notes-file)
+  				 "* TODO %?\n %a")
+  				("a" "Assignment" entry (file "assignments.org")
+  				 "* TODO %?\n DEADLINE: %^t")
+  				("i" "Ideas")
+  				("ip" "Programming Ideas" entry (file "ideas.org")
+  				 "* %?\n %i\n\n %t"))))
 #+end_src
 
 I rarely use [[https://www.markdownguide.org/][markdown]] myself, but I have a few friends that do, so I keep this installed

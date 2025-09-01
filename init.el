@@ -61,15 +61,13 @@
 
 (use-package elpher)
 
-(global-set-key (kbd "C-c a") 'org-agenda)
-
 (ido-mode 1)
 
 (use-package paredit
   :hook ((emacs-lisp-mode . enable-paredit-mode)
 	 (clojure-mode    . enable-paredit-mode)
 	 (scheme-mode     . enable-paredit-mode))
-  :after (cider geiser-guile))
+  :after (cider))
 
 (use-package rainbow-delimiters
   :defer nil
@@ -81,7 +79,7 @@
 (use-package cider)
 
 (use-package geiser-guile
-  :hook ((scheme-mode . geiser-mode)))
+  :hook ((scheme-mode . geiser)))
 
 (use-package proof-general)
 
@@ -94,6 +92,22 @@
     (setenv "PATH" (concat (getenv "PATH") ":" cam-ghcup-path))
     (add-to-list 'exec-path cam-ghcup-path)))
 
-(add-hook org-mode-hook flyspell-mode)
+(use-package org
+  :straight nil
+  :ensure nil
+  :bind (("C-c a" . org-agenda)
+	 ("C-c c" . org-capture))
+  :config
+  (setq org-directory (concat (getenv "HOME") "/Documents/Agenda/")
+	org-agenda-files (list org-directory)
+	org-todo-keywords '((sequence "TODO(t)" "WAIT(w!)" "|" "CANCEL(c!)" "DONE(d!)"))
+	org-default-notes-file (concat (car org-agenda-files) "notes.org")
+        org-capture-templates '(("t" "Todo" entry (file org-default-notes-file)
+				 "* TODO %?\n %a")
+				("a" "Assignment" entry (file "assignments.org")
+				 "* TODO %?\n DEADLINE: %^t")
+				("i" "Ideas")
+				("ip" "Programming Ideas" entry (file "ideas.org")
+				 "* %?\n %i\n\n %t"))))
 
 (use-package markdown-mode)
