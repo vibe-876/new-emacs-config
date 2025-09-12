@@ -89,6 +89,14 @@
 						 (name . "^\\*GNU Emacs\\*$")))
 				       ("Unsaved" (modified))))))
 
+(use-package reader
+  :straight '(reader
+	      :type git
+	      :host codeberg
+	      :repo "divyaranjan/emacs-reader"
+	      :files ("*.el" "render-core.so")
+	      :pre-build ("make" "all")))
+
 (use-package paredit
   :hook ((emacs-lisp-mode . enable-paredit-mode)
 	 (clojure-mode    . enable-paredit-mode)

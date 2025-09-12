@@ -125,6 +125,8 @@ Gopher and gemini are both alternate communication protocols for the internet, a
   (ido-mode 1)
 #+end_src
 
+~ibuffer~ is a drop-in replacement for the standard buffer list.
+I view it as the ~ido-mode~ of the buffer list.
 #+begin_src elisp
   (use-package ibuffer
     :ensure nil
@@ -150,6 +152,18 @@ Gopher and gemini are both alternate communication protocols for the internet, a
   						 (name . "^\\*Messages\\*$")
   						 (name . "^\\*GNU Emacs\\*$")))
   				       ("Unsaved" (modified))))))
+#+end_src
+
+[[https://codeberg.org/divyaranjan/emacs-reader][reader]] is a replacement for the standard DocView tools.
+As I spend some of my time reading papers, this is very useful to me.
+#+begin_src elisp
+  (use-package reader
+    :straight '(reader
+  	      :type git
+  	      :host codeberg
+  	      :repo "divyaranjan/emacs-reader"
+  	      :files ("*.el" "render-core.so")
+  	      :pre-build ("make" "all")))
 #+end_src
 
 * Writing
