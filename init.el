@@ -43,6 +43,7 @@
 	    ("https://xkcd.com/rss.xml" comic)
 	    ("https://www.smbc-comics.com/comic/rss" comic)
 	    ("https://archlinux.org/feeds/news/" arch linux tech)
+	    ("https://www.debian.org/security/dsa" debian linux tech)
 	    ("https://wolfgirl.dev/blog/rss.xml" blog tech prog)
 	    ("https://izzys.casa/index.xml" blog tech prog)
 	    ("https://faultlore.com/blah/rss.xml" blog tech prog)
@@ -62,6 +63,31 @@
 (use-package elpher)
 
 (ido-mode 1)
+
+(use-package ibuffer
+  :ensure nil
+  :straight nil
+  :bind ("C-x C-b" . ibuffer)
+  :hook (ibuffer-mode . (lambda ()
+			  (ibuffer-switch-to-saved-filter-groups "Buffers")))
+  :config
+  (setq ibuffer-expert nil
+	ibuffer-saved-filter-groups '(("Buffers"
+				       ("Org" (mode . org-mode))
+				       ("Magit" (mode . magit-status-mode))
+				       ("Clojure" (or (mode . clojure-mode)
+						      (mode . cider-mode)))
+				       ("Emacs" (or
+						 (mode . emacs-lisp-mode)
+						 (name . "^\\*Help\\*$")
+						 (name . "^\\*Custom.*")
+						 (name . "^\\*Org Agenda\\*$")
+						 (name . "^\\*info\\*$")
+						 (name . "^\\*scratch\\*$")
+						 (name . "^\\*Backtrace\\*$")
+						 (name . "^\\*Messages\\*$")
+						 (name . "^\\*GNU Emacs\\*$")))
+				       ("Unsaved" (modified))))))
 
 (use-package paredit
   :hook ((emacs-lisp-mode . enable-paredit-mode)
@@ -103,9 +129,11 @@
 	org-todo-keywords '((sequence "TODO(t)" "WAIT(w!)" "|" "CANCEL(c!)" "DONE(d!)"))
 	org-default-notes-file (concat (car org-agenda-files) "notes.org")
         org-capture-templates '(("t" "Todo" entry (file org-default-notes-file)
-				 "* TODO %?\n %a")
+				 "* TODO %?\n %a\n DEADLINE: %^t")
 				("a" "Assignment" entry (file "assignments.org")
 				 "* TODO %?\n DEADLINE: %^t")
+				("d" "Diary Entry" entry (file "diary.org")
+				  "* %?\n %t")
 				("i" "Ideas")
 				("ip" "Programming Ideas" entry (file "ideas.org")
 				 "* %?\n %i\n\n %t"))))
