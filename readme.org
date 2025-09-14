@@ -56,6 +56,7 @@ I've chosen to lay the file out like this because the way I see it, everything t
 
 * Reading
 [[https://magit.vc/][Magit]] is an amazing git porcelain.
+It's the only git "thing" that I'd happy use instead of the standard command-line version.
 #+begin_src elisp
   (use-package magit)
 #+end_src
@@ -138,9 +139,15 @@ I view it as the ~ido-mode~ of the buffer list.
     (setq ibuffer-expert nil
   	ibuffer-saved-filter-groups '(("Buffers"
   				       ("Org" (mode . org-mode))
-  				       ("Magit" (mode . magit-status-mode))
-  				       ("Clojure" (or (mode . clojure-mode)
-  						      (mode . cider-mode)))
+  				       ("Programming" (or (mode . clojure-mode)
+  							  (mode . cider-mode)
+  							  (mode . c-mode)
+  							  (mode . java-mode)
+  							  (mode . emacs-lisp-mode)))
+  				       ("Magit" (or (mode . magit-status-mode)
+  						    (mode . magit-diff-mode)
+  						    (mode . magit-process-mode)))
+  				       ("Documents" (mode . reader-mode))
   				       ("Emacs" (or
   						 (mode . emacs-lisp-mode)
   						 (name . "^\\*Help\\*$")
@@ -150,7 +157,8 @@ I view it as the ~ido-mode~ of the buffer list.
   						 (name . "^\\*scratch\\*$")
   						 (name . "^\\*Backtrace\\*$")
   						 (name . "^\\*Messages\\*$")
-  						 (name . "^\\*GNU Emacs\\*$")))
+  						 (name . "^\\*GNU Emacs\\*$")
+  						 (mode . emacs-news-view-mode)))
   				       ("Unsaved" (modified))))))
 #+end_src
 

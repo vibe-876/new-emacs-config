@@ -74,9 +74,15 @@
   (setq ibuffer-expert nil
 	ibuffer-saved-filter-groups '(("Buffers"
 				       ("Org" (mode . org-mode))
-				       ("Magit" (mode . magit-status-mode))
-				       ("Clojure" (or (mode . clojure-mode)
-						      (mode . cider-mode)))
+				       ("Programming" (or (mode . clojure-mode)
+							  (mode . cider-mode)
+							  (mode . c-mode)
+							  (mode . java-mode)
+							  (mode . emacs-lisp-mode)))
+				       ("Magit" (or (mode . magit-status-mode)
+						    (mode . magit-diff-mode)
+						    (mode . magit-process-mode)))
+				       ("Documents" (mode . reader-mode))
 				       ("Emacs" (or
 						 (mode . emacs-lisp-mode)
 						 (name . "^\\*Help\\*$")
@@ -86,7 +92,8 @@
 						 (name . "^\\*scratch\\*$")
 						 (name . "^\\*Backtrace\\*$")
 						 (name . "^\\*Messages\\*$")
-						 (name . "^\\*GNU Emacs\\*$")))
+						 (name . "^\\*GNU Emacs\\*$")
+						 (mode . emacs-news-view-mode)))
 				       ("Unsaved" (modified))))))
 
 (use-package reader
