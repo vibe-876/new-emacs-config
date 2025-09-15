@@ -85,6 +85,7 @@ I find RSS to be a much nicer way of interacting with the web than the modern al
   (use-package elfeed
     :defer t
     :bind ("C-c e" . elfeed)
+    :after (emms)
     :config
     (setq elfeed-feeds
   	  '(("https://irreal.org/blog/?feed=rss2" blog emacs)
@@ -112,6 +113,14 @@ I find RSS to be a much nicer way of interacting with the web than the modern al
   	    ;; Philosophy Tube
   	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UC2PA-AKmVpU6NKCGtZq_rKQ" video phil)
   	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCctWUfejRybO1cCT6DmIRqQ" video speedrun))))
+#+end_src
+
+~emms~ is the Emacs MultiMedia System.
+I mainly use it with ~elfeed~, so that I can listen to podcasts, with a simple ~A~ on the entry.
+#+begin_src elisp
+  (use-package emms
+    :config
+    (setq emms-player-list '(emms-player-mpv)))
 #+end_src
 
 Elpher is a gopher and gemini client.

@@ -32,6 +32,7 @@
 (use-package elfeed
   :defer t
   :bind ("C-c e" . elfeed)
+  :after (emms)
   :config
   (setq elfeed-feeds
 	  '(("https://irreal.org/blog/?feed=rss2" blog emacs)
@@ -59,6 +60,10 @@
 	    ;; Philosophy Tube
 	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UC2PA-AKmVpU6NKCGtZq_rKQ" video phil)
 	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCctWUfejRybO1cCT6DmIRqQ" video speedrun))))
+
+(use-package emms
+  :config
+  (setq emms-player-list '(emms-player-mpv)))
 
 (use-package elpher)
 
