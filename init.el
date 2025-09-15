@@ -63,6 +63,7 @@
 
 (use-package emms
   :config
+  (emms-all)
   (setq emms-player-list '(emms-player-mpv)))
 
 (use-package elpher)
@@ -78,16 +79,19 @@
   :config
   (setq ibuffer-expert nil
 	ibuffer-saved-filter-groups '(("Buffers"
-				       ("Org" (mode . org-mode))
 				       ("Programming" (or (mode . clojure-mode)
 							  (mode . cider-mode)
 							  (mode . c-mode)
 							  (mode . java-mode)
-							  (mode . emacs-lisp-mode)))
+							  (mode . emacs-lisp-mode)
+							  (mode . mhtml-mode)
+							  (mode . makefile-gmake-mode)))
+				       ("Documents" (or (mode . org-mode)
+							(mode . markdown-mode)
+							(mode . reader-mode)))
 				       ("Magit" (or (mode . magit-status-mode)
 						    (mode . magit-diff-mode)
 						    (mode . magit-process-mode)))
-				       ("Documents" (mode . reader-mode))
 				       ("Emacs" (or
 						 (mode . emacs-lisp-mode)
 						 (name . "^\\*Help\\*$")
@@ -148,8 +152,11 @@
 	org-agenda-files (list org-directory)
 	org-todo-keywords '((sequence "TODO(t)" "WAIT(w!)" "|" "CANCEL(c!)" "DONE(d!)"))
 	org-default-notes-file (concat (car org-agenda-files) "notes.org")
-        org-capture-templates '(("t" "Todo" entry (file org-default-notes-file)
+        org-capture-templates '(("t" "Todo")
+				("tt" "Standard Thing" entry (file org-default-notes-file)
 				 "* TODO %?\n %a\n DEADLINE: %^t")
+				("tw" "Work Thing" entry (file org-default-notes-file)
+				 "* TODO %?\n SCHEDULED: %^t")
 				("a" "Assignment" entry (file "assignments.org")
 				 "* TODO %?\n DEADLINE: %^t")
 				("d" "Diary Entry" entry (file "diary.org")
