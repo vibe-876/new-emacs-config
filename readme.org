@@ -236,9 +236,18 @@ I've got the [[https://www.gnu.org/software/guile/][Guile]] version installed, b
 #+end_src
 
 
-[[https://rocq-prover.org/][Rocq]] (formally coq)
+[[https://lean-lang.org/][Lean 4]] is a powerful programming language, with the ability to formalise mathematics.
+I'm doing (at the time of writing, late 2025) a second year undergraduate in computer science and mathematics, so -- for obvious reasons -- this language is appealing to me.
+For using Lean 4 in Emacs, I use the wonderful [[https://github.com/leanprover-community/lean4-mode][lean4-mode]].
 #+begin_src elisp
-  (use-package proof-general)
+  (use-package dash)
+  (use-package lsp-mode)
+
+  (use-package lean4-mode
+    :commands lean4-mode
+    :straight (lean4-mode :type git :host github
+  			:repo "leanprover-community/lean4-mode"
+  			:files ("*.el" "data")))
 #+end_src
 
 Haskell is a beautiful declarative, lazy, and functional programming language.
