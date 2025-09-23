@@ -128,8 +128,14 @@
 
 (use-package cider)
 
-(use-package geiser-guile
+(use-package geiser
   :hook ((scheme-mode . geiser)))
+
+(use-package geiser-guile
+  :after geiser)
+
+(use-package geiser-racket
+  :after geiser)
 
 (use-package dash)
 (use-package lsp-mode)
@@ -138,7 +144,10 @@
   :commands lean4-mode
   :straight (lean4-mode :type git :host github
 			:repo "leanprover-community/lean4-mode"
-			:files ("*.el" "data")))
+			:files ("*.el" "data"))
+  :config
+  (add-to-list 'exec-path (concat (getenv "HOME")
+				  "/.elan/bin")))
 
 (use-package haskell-mode
   :bind

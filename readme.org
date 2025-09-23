@@ -231,8 +231,14 @@ I've got the [[https://www.gnu.org/software/guile/][Guile]] version installed, b
 
 [[http://xahlee.info/comp/wizard_book.html][Have you read your SICP today?]]
 #+begin_src elisp
-  (use-package geiser-guile
+  (use-package geiser
     :hook ((scheme-mode . geiser)))
+
+  (use-package geiser-guile
+    :after geiser)
+
+  (use-package geiser-racket
+    :after geiser)
 #+end_src
 
 
@@ -247,7 +253,10 @@ For using Lean 4 in Emacs, I use the wonderful [[https://github.com/leanprover-c
     :commands lean4-mode
     :straight (lean4-mode :type git :host github
   			:repo "leanprover-community/lean4-mode"
-  			:files ("*.el" "data")))
+  			:files ("*.el" "data"))
+    :config
+    (add-to-list 'exec-path (concat (getenv "HOME")
+  				  "/.elan/bin")))
 #+end_src
 
 Haskell is a beautiful declarative, lazy, and functional programming language.
