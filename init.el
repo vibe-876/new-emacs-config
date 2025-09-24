@@ -158,6 +158,29 @@
     (setenv "PATH" (concat (getenv "PATH") ":" cam-ghcup-path))
     (add-to-list 'exec-path cam-ghcup-path)))
 
+(defun cam/run-java (java-file)
+  "Simple running of a java program, using comint mode.
+See `cam/inferior-java-mode'."
+  (interactive "bInit File: ")
+  (unless (executable-find "java")
+      (message "ERROR: Couldn't find Java executable!"))
+  
+  (let* ((class-file (file-name-base java-file))
+	 (inferior-buffer-name "Java Process")
+	 (default-directory (concat default-directory "../build")))
+    (switch-to-buffer (concat "*Java Process*"))
+    (erase-buffer)
+    (make-comint-in-buffer inferior-buffer-name
+			   nil
+			   (executable-find "java")
+			   nil
+			   class-file)))
+
+
+(add-hook 'java-mode-hook (lambda () (local-set-key (kbd "C-c C-l") 'cam/run-java)))
+(add-hook 'java-mode-hook (lambda ()
+			    (setq-local compile-command "ant -emacs -find")))
+
 (use-package org
   :straight nil
   :ensure nil

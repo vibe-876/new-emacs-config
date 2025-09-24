@@ -271,6 +271,33 @@ Haskell is a beautiful declarative, lazy, and functional programming language.
       (add-to-list 'exec-path cam-ghcup-path)))
 #+end_src
 
+My University course requires that I use Java (ew).
+I'll die before I willingly program in IntelliJ, so Emacs needs to be able to do Java things.
+#+begin_src elisp
+  (defun cam/run-java (java-file)
+    "Simple running of a java program, using comint mode.
+  See `cam/inferior-java-mode'."
+    (interactive "bInit File: ")
+    (unless (executable-find "java")
+        (message "ERROR: Couldn't find Java executable!"))
+    
+    (let* ((class-file (file-name-base java-file))
+  	 (inferior-buffer-name "Java Process")
+  	 (default-directory (concat default-directory "../build")))
+      (switch-to-buffer (concat "*Java Process*"))
+      (erase-buffer)
+      (make-comint-in-buffer inferior-buffer-name
+  			   nil
+  			   (executable-find "java")
+  			   nil
+  			   class-file)))
+
+
+  (add-hook 'java-mode-hook (lambda () (local-set-key (kbd "C-c C-l") 'cam/run-java)))
+  (add-hook 'java-mode-hook (lambda ()
+  			    (setq-local compile-command "ant -emacs -find")))
+#+end_src
+
 Where to begin with Org Mode...
 [[https://orgmode.org/][Org]] is -- at its simplest -- a markup language that's pretty good at scheduling and literate programming.
 If you've never given it a shot, I'd recommend trying it.
