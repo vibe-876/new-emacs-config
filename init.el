@@ -179,7 +179,7 @@ See `cam/inferior-java-mode'."
 
 (add-hook 'java-mode-hook (lambda () (local-set-key (kbd "C-c C-l") 'cam/run-java)))
 (add-hook 'java-mode-hook (lambda ()
-			    (setq-local compile-command "ant -emacs -find")))
+			    (setq-local compile-command "ant -emacs -find build.xml")))
 
 (use-package org
   :straight nil

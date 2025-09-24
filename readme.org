@@ -273,6 +273,12 @@ Haskell is a beautiful declarative, lazy, and functional programming language.
 
 My University course requires that I use Java (ew).
 I'll die before I willingly program in IntelliJ, so Emacs needs to be able to do Java things.
+
+At the moment, this expects a directory structure for the project to have a ~build.xml~ for [[https://ant.apache.org/][ant]] at its root, as well as a directory called ~build~.
+~build~ is where it'll look for the Java class files in question.
+This is good enough for me for now, but I may rewrite it at some point, using something like [[https://github.com/bbatsov/projectile][projectile]] and ~directory-files-recursively~.
+
+Note, you may want to change ~build.xml~ to something else in the hook, it's just what I call my build files for ant.
 #+begin_src elisp
   (defun cam/run-java (java-file)
     "Simple running of a java program, using comint mode.
@@ -295,7 +301,7 @@ I'll die before I willingly program in IntelliJ, so Emacs needs to be able to do
 
   (add-hook 'java-mode-hook (lambda () (local-set-key (kbd "C-c C-l") 'cam/run-java)))
   (add-hook 'java-mode-hook (lambda ()
-  			    (setq-local compile-command "ant -emacs -find")))
+  			    (setq-local compile-command "ant -emacs -find build.xml")))
 #+end_src
 
 Where to begin with Org Mode...
