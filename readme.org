@@ -220,12 +220,9 @@ I've got the [[https://www.gnu.org/software/guile/][Guile]] version installed, b
 [[http://xahlee.info/comp/wizard_book.html][Have you read your SICP today?]]
 #+begin_src elisp
   (use-package geiser
-    :hook ((scheme-mode . geiser)))
+    :hook ((scheme-mode . geiser-mode)))
 
   (use-package geiser-guile
-    :after geiser)
-
-  (use-package geiser-racket
     :after geiser)
 #+end_src
 

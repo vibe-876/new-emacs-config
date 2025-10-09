@@ -121,12 +121,9 @@
 (use-package cider)
 
 (use-package geiser
-  :hook ((scheme-mode . geiser)))
+  :hook ((scheme-mode . geiser-mode)))
 
 (use-package geiser-guile
-  :after geiser)
-
-(use-package geiser-racket
   :after geiser)
 
 (use-package dash)
