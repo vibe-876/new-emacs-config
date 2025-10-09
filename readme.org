@@ -139,52 +139,40 @@ Gopher and gemini are both alternate communication protocols for the internet, a
 ~ibuffer~ is a drop-in replacement for the standard buffer list.
 I view it as the ~ido-mode~ of the buffer list.
 #+begin_src elisp
-  (use-package ibuffer
-    :ensure nil
-    :straight nil
-    :bind ("C-x C-b" . ibuffer)
-    :hook (ibuffer-mode . (lambda ()
-  			  (ibuffer-switch-to-saved-filter-groups "Buffers")))
-    :config
-    (setq ibuffer-expert nil
-  	ibuffer-saved-filter-groups '(("Buffers"
-  				       ("Programming" (or (mode . clojure-mode)
-  							  (mode . cider-mode)
-  							  (mode . c-mode)
-  							  (mode . java-mode)
-  							  (mode . emacs-lisp-mode)
-  							  (mode . mhtml-mode)
-  							  (mode . makefile-gmake-mode)))
-  				       ("Documents" (or (mode . org-mode)
-  							(mode . markdown-mode)
-  							(mode . reader-mode)))
-  				       ("Magit" (or (mode . magit-status-mode)
-  						    (mode . magit-diff-mode)
-  						    (mode . magit-process-mode)))
-  				       ("Emacs" (or
-  						 (mode . emacs-lisp-mode)
-  						 (name . "^\\*Help\\*$")
-  						 (name . "^\\*Custom.*")
-  						 (name . "^\\*Org Agenda\\*$")
-  						 (name . "^\\*info\\*$")
-  						 (name . "^\\*scratch\\*$")
-  						 (name . "^\\*Backtrace\\*$")
-  						 (name . "^\\*Messages\\*$")
-  						 (name . "^\\*GNU Emacs\\*$")
-  						 (mode . emacs-news-view-mode)))
-  				       ("Unsaved" (modified))))))
-#+end_src
-
-[[https://codeberg.org/divyaranjan/emacs-reader][reader]] is a replacement for the standard DocView tools.
-As I spend some of my time reading papers, this is very useful to me.
-#+begin_src elisp
-  (use-package reader
-    :straight '(reader
-  	      :type git
-  	      :host codeberg
-  	      :repo "divyaranjan/emacs-reader"
-  	      :files ("*.el" "render-core.so")
-  	      :pre-build ("make" "all")))
+    (use-package ibuffer
+      :ensure nil
+      :straight nil
+      :bind ("C-x C-b" . ibuffer)
+      :hook (ibuffer-mode . (lambda ()
+    			  (ibuffer-switch-to-saved-filter-groups "Buffers")))
+      :config
+      (setq ibuffer-expert nil
+    	ibuffer-saved-filter-groups '(("Buffers"
+    				       ("Programming" (or (mode . clojure-mode)
+    							  (mode . cider-mode)
+    							  (mode . c-mode)
+    							  (mode . java-mode)
+    							  (mode . emacs-lisp-mode)
+    							  (mode . mhtml-mode)
+    							  (mode . makefile-gmake-mode)))
+    				       ("Documents" (or (mode . org-mode)
+    							(mode . markdown-mode)
+    							(mode . reader-mode)))
+    				       ("Magit" (or (mode . magit-status-mode)
+    						    (mode . magit-diff-mode)
+    						    (mode . magit-process-mode)))
+    				       ("Emacs" (or
+    						 (mode . emacs-lisp-mode)
+    						 (name . "^\\*Help\\*$")
+    						 (name . "^\\*Custom.*")
+    						 (name . "^\\*Org Agenda\\*$")
+    						 (name . "^\\*info\\*$")
+    						 (name . "^\\*scratch\\*$")
+    						 (name . "^\\*Backtrace\\*$")
+    						 (name . "^\\*Messages\\*$")
+    						 (name . "^\\*GNU Emacs\\*$")
+    						 (mode . emacs-news-view-mode)))
+    				       ("Unsaved" (modified))))))
 #+end_src
 
 * Writing
@@ -335,4 +323,9 @@ If you've never given it a shot, I'd recommend trying it.
 I rarely use [[https://www.markdownguide.org/][markdown]] myself, but I have a few friends that do, so I keep this installed
 #+begin_src elisp
   (use-package markdown-mode)
+#+end_src
+
+#+begin_src elisp
+  (use-package typst-ts-mode
+    :straight '(:type git :host codeberg :repo "meow_king/typst-ts-mode"))
 #+end_src

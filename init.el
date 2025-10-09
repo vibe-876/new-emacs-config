@@ -105,14 +105,6 @@
 						 (mode . emacs-news-view-mode)))
 				       ("Unsaved" (modified))))))
 
-(use-package reader
-  :straight '(reader
-	      :type git
-	      :host codeberg
-	      :repo "divyaranjan/emacs-reader"
-	      :files ("*.el" "render-core.so")
-	      :pre-build ("make" "all")))
-
 (use-package paredit
   :hook ((emacs-lisp-mode . enable-paredit-mode)
 	 (clojure-mode    . enable-paredit-mode)
@@ -205,3 +197,6 @@ See `cam/inferior-java-mode'."
 				 "* %?\n %i\n\n %t"))))
 
 (use-package markdown-mode)
+
+(use-package typst-ts-mode
+  :straight '(:type git :host codeberg :repo "meow_king/typst-ts-mode"))
