@@ -165,10 +165,31 @@ See `cam/inferior-java-mode'."
 			   nil
 			   class-file)))
 
+(defun cam/java-save-and-recompile nil
+  (interactive)
+  (save-buffer)
+  (recompile))
 
 (add-hook 'java-mode-hook (lambda () (local-set-key (kbd "C-c C-l") 'cam/run-java)))
+(add-hook 'java-mode-hook (lambda () (local-set-key (kbd "C-x C-s") 'cam/java-save-and-recompile)))
 (add-hook 'java-mode-hook (lambda ()
 			    (setq-local compile-command "ant -emacs -find build.xml")))
+
+(use-package scala-mode
+  :interpreter ("scala" . scala-mode))
+
+(use-package scala-repl
+  :after scala-mode
+  :bind (("C-c C-l" . scala-repl-eval-buffer)))
+
+(use-package sbt-mode
+  :commands sbt-start sbt-commmand
+  :config
+  (substitute-key-definition
+   'minibuffer-complete-word
+   'self-insert-command
+   minibuffer-local-completion-map)
+  (setq sbt:program-options '("-Dsbt.supershell=false")))
 
 (use-package org
   :straight nil

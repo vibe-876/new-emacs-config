@@ -283,10 +283,34 @@ Note, you may want to change ~build.xml~ to something else in the hook, it's jus
   			   nil
   			   class-file)))
 
+  (defun cam/java-save-and-recompile nil
+    (interactive)
+    (save-buffer)
+    (recompile))
 
   (add-hook 'java-mode-hook (lambda () (local-set-key (kbd "C-c C-l") 'cam/run-java)))
+  (add-hook 'java-mode-hook (lambda () (local-set-key (kbd "C-x C-s") 'cam/java-save-and-recompile)))
   (add-hook 'java-mode-hook (lambda ()
   			    (setq-local compile-command "ant -emacs -find build.xml")))
+#+end_src
+
+Scala
+#+begin_src elisp
+  (use-package scala-mode
+    :interpreter ("scala" . scala-mode))
+
+  (use-package scala-repl
+    :after scala-mode
+    :bind (("C-c C-l" . scala-repl-eval-buffer)))
+
+  (use-package sbt-mode
+    :commands sbt-start sbt-commmand
+    :config
+    (substitute-key-definition
+     'minibuffer-complete-word
+     'self-insert-command
+     minibuffer-local-completion-map)
+    (setq sbt:program-options '("-Dsbt.supershell=false")))
 #+end_src
 
 Where to begin with Org Mode...
