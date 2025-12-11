@@ -68,7 +68,7 @@ I also like to disable the tool bar, menu bar, and scroll bar, because I work al
   (use-package ef-themes
     :defer nil
     :config
-    (load-theme 'ef-dream t)
+    (load-theme 'ef-dark t)
     (set-frame-parameter nil 'alpha-background 98))
 
   (tool-bar-mode -1)
@@ -139,40 +139,41 @@ Gopher and gemini are both alternate communication protocols for the internet, a
 ~ibuffer~ is a drop-in replacement for the standard buffer list.
 I view it as the ~ido-mode~ of the buffer list.
 #+begin_src elisp
-    (use-package ibuffer
-      :ensure nil
-      :straight nil
-      :bind ("C-x C-b" . ibuffer)
-      :hook (ibuffer-mode . (lambda ()
-    			  (ibuffer-switch-to-saved-filter-groups "Buffers")))
-      :config
-      (setq ibuffer-expert nil
-    	ibuffer-saved-filter-groups '(("Buffers"
-    				       ("Programming" (or (mode . clojure-mode)
-    							  (mode . cider-mode)
-    							  (mode . c-mode)
-    							  (mode . java-mode)
-    							  (mode . emacs-lisp-mode)
-    							  (mode . mhtml-mode)
-    							  (mode . makefile-gmake-mode)))
-    				       ("Documents" (or (mode . org-mode)
-    							(mode . markdown-mode)
-    							(mode . reader-mode)))
-    				       ("Magit" (or (mode . magit-status-mode)
-    						    (mode . magit-diff-mode)
-    						    (mode . magit-process-mode)))
-    				       ("Emacs" (or
-    						 (mode . emacs-lisp-mode)
-    						 (name . "^\\*Help\\*$")
-    						 (name . "^\\*Custom.*")
-    						 (name . "^\\*Org Agenda\\*$")
-    						 (name . "^\\*info\\*$")
-    						 (name . "^\\*scratch\\*$")
-    						 (name . "^\\*Backtrace\\*$")
-    						 (name . "^\\*Messages\\*$")
-    						 (name . "^\\*GNU Emacs\\*$")
-    						 (mode . emacs-news-view-mode)))
-    				       ("Unsaved" (modified))))))
+  (use-package ibuffer
+    :ensure nil
+    :straight nil
+    :bind ("C-x C-b" . ibuffer)
+    :hook (ibuffer-mode . (lambda ()
+  			  (ibuffer-switch-to-saved-filter-groups "Buffers")))
+    :config
+    (setq ibuffer-expert nil
+  	ibuffer-saved-filter-groups '(("Buffers"
+  				       ("Programming" (or (mode . clojure-mode)
+  							  (mode . cider-mode)
+  							  (mode . c-mode)
+  							  (mode . java-mode)
+  							  (mode . scala-mode)
+  							  (mode . emacs-lisp-mode)
+  							  (mode . mhtml-mode)
+  							  (mode . makefile-gmake-mode)))
+  				       ("Documents" (or (mode . org-mode)
+  							(mode . markdown-mode)
+  							(mode . reader-mode)))
+  				       ("Magit" (or (mode . magit-status-mode)
+  						    (mode . magit-diff-mode)
+  						    (mode . magit-process-mode)))
+  				       ("Emacs" (or
+  						 (mode . emacs-lisp-mode)
+  						 (name . "^\\*Help\\*$")
+  						 (name . "^\\*Custom.*")
+  						 (name . "^\\*Org Agenda\\*$")
+  						 (name . "^\\*info\\*$")
+  						 (name . "^\\*scratch\\*$")
+  						 (name . "^\\*Backtrace\\*$")
+  						 (name . "^\\*Messages\\*$")
+  						 (name . "^\\*GNU Emacs\\*$")
+  						 (mode . emacs-news-view-mode)))
+  				       ("Unsaved" (modified))))))
 #+end_src
 
 * Writing
@@ -292,6 +293,9 @@ Note, you may want to change ~build.xml~ to something else in the hook, it's jus
   (add-hook 'java-mode-hook (lambda () (local-set-key (kbd "C-x C-s") 'cam/java-save-and-recompile)))
   (add-hook 'java-mode-hook (lambda ()
   			    (setq-local compile-command "ant -emacs -find build.xml")))
+
+
+  (global-set-key (kbd "M-c") 'compile)
 #+end_src
 
 Scala

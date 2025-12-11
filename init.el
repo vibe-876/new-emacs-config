@@ -22,7 +22,7 @@
 (use-package ef-themes
   :defer nil
   :config
-  (load-theme 'ef-dream t)
+  (load-theme 'ef-dark t)
   (set-frame-parameter nil 'alpha-background 98))
 
 (tool-bar-mode -1)
@@ -83,6 +83,7 @@
 							  (mode . cider-mode)
 							  (mode . c-mode)
 							  (mode . java-mode)
+							  (mode . scala-mode)
 							  (mode . emacs-lisp-mode)
 							  (mode . mhtml-mode)
 							  (mode . makefile-gmake-mode)))
@@ -174,6 +175,9 @@ See `cam/inferior-java-mode'."
 (add-hook 'java-mode-hook (lambda () (local-set-key (kbd "C-x C-s") 'cam/java-save-and-recompile)))
 (add-hook 'java-mode-hook (lambda ()
 			    (setq-local compile-command "ant -emacs -find build.xml")))
+
+
+(global-set-key (kbd "M-c") 'compile)
 
 (use-package scala-mode
   :interpreter ("scala" . scala-mode))
