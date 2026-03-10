@@ -54,6 +54,11 @@ It lets me clone packages directly from git repos, which I prefer to the standar
 From this point onwards, this document will separated into two sections: Reading, and Writing.
 I've chosen to lay the file out like this because the way I see it, everything that a text editor does can be described by these two operations.
 
+We then start the Emacs Server.
+#+begin_src elisp
+  (server-start)
+#+end_src
+
 * Reading
 [[https://magit.vc/][Magit]] is an amazing git porcelain.
 It's the only git "thing" that I'd happy use instead of the standard command-line version.
@@ -68,7 +73,7 @@ I also like to disable the tool bar, menu bar, and scroll bar, because I work al
   (use-package ef-themes
     :defer nil
     :config
-    (load-theme 'ef-dark t)
+    (load-theme 'ef-dream t)
     (set-frame-parameter nil 'alpha-background 98))
 
   (tool-bar-mode -1)
@@ -155,7 +160,8 @@ I view it as the ~ido-mode~ of the buffer list.
   							  (mode . scala-mode)
   							  (mode . emacs-lisp-mode)
   							  (mode . mhtml-mode)
-  							  (mode . makefile-gmake-mode)))
+  							  (mode . makefile-gmake-mode)
+  							  (mode . sh-mode)))
   				       ("Documents" (or (mode . org-mode)
   							(mode . markdown-mode)
   							(mode . reader-mode)))
@@ -227,6 +233,13 @@ I've got the [[https://www.gnu.org/software/guile/][Guile]] version installed, b
     :after geiser)
 #+end_src
 
+We also want common lisp, we <3 all lisps equally.
+#+begin_src elisp
+  (use-package sly
+    :config
+    (setq inferior-lisp-program "/sbin/sbcl"))
+#+end_src
+
 
 [[https://lean-lang.org/][Lean 4]] is a powerful programming language, with the ability to formalise mathematics.
 I'm doing (at the time of writing, late 2025) a second year undergraduate in computer science and mathematics, so -- for obvious reasons -- this language is appealing to me.
@@ -289,10 +302,10 @@ Note, you may want to change ~build.xml~ to something else in the hook, it's jus
     (save-buffer)
     (recompile))
 
-  (add-hook 'java-mode-hook (lambda () (local-set-key (kbd "C-c C-l") 'cam/run-java)))
-  (add-hook 'java-mode-hook (lambda () (local-set-key (kbd "C-x C-s") 'cam/java-save-and-recompile)))
-  (add-hook 'java-mode-hook (lambda ()
-  			    (setq-local compile-command "ant -emacs -find build.xml")))
+  ;; (add-hook 'java-mode-hook (lambda () (local-set-key (kbd "C-c C-l") 'cam/run-java)))
+  ;; (add-hook 'java-mode-hook (lambda () (local-set-key (kbd "C-x C-s") 'cam/java-save-and-recompile)))
+  ;; (add-hook 'java-mode-hook (lambda ()
+  ;; 			    (setq-local compile-command "ant -emacs -find build.xml")))
 
 
   (global-set-key (kbd "M-c") 'compile)
@@ -342,7 +355,30 @@ If you've never given it a shot, I'd recommend trying it.
   				  "* %?\n %t")
   				("i" "Ideas")
   				("ip" "Programming Ideas" entry (file "ideas.org")
-  				 "* %?\n %i\n\n %t"))))
+  				 "* %?\n %i\n\n %t"))
+  	org-html-head ""
+  	org-html-head-extra ""
+  	org-html-head-include-default-style nil
+  	org-html-head-include-scripts nil
+  	org-html-preamble nil
+  	org-html-postamble nil
+  	org-html-use-infojs nil))
+
+  (defun cam/start-slideshow ()
+    (interactive)
+    (text-scale-set 4)
+    (org-tree-slide-mode 1))
+
+  (defun cam/end-slideshow ()
+    (interactive)
+    (text-scale-set 0)
+    (org-tree-slide-mode 0))
+
+
+  (use-package org-tree-slide
+    :after org
+    :bind (("C-c s" . cam/start-slideshow)
+  	 ("C-c q" . cam/end-slideshow)))
 #+end_src
 
 I rarely use [[https://www.markdownguide.org/][markdown]] myself, but I have a few friends that do, so I keep this installed
@@ -351,6 +387,11 @@ I rarely use [[https://www.markdownguide.org/][markdown]] myself, but I have a f
 #+end_src
 
 #+begin_src elisp
+  (defun cam/vector-typst (vector-name)
+    (interactive "sVector Name: ")
+    (insert "underline(" vector-name ")"))
+
   (use-package typst-ts-mode
-    :straight '(:type git :host codeberg :repo "meow_king/typst-ts-mode"))
+    :straight '(:type git :host codeberg :repo "meow_king/typst-ts-mode")
+    :bind (("C-c v" . cam/vector-typst)))
 #+end_src

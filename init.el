@@ -17,12 +17,14 @@
 (setq straight-use-package-by-default t
       use-package-always-ensure nil)
 
+(server-start)
+
 (use-package magit)
 
 (use-package ef-themes
   :defer nil
   :config
-  (load-theme 'ef-dark t)
+  (load-theme 'ef-dream t)
   (set-frame-parameter nil 'alpha-background 98))
 
 (tool-bar-mode -1)
@@ -86,7 +88,8 @@
 							  (mode . scala-mode)
 							  (mode . emacs-lisp-mode)
 							  (mode . mhtml-mode)
-							  (mode . makefile-gmake-mode)))
+							  (mode . makefile-gmake-mode)
+							  (mode . sh-mode)))
 				       ("Documents" (or (mode . org-mode)
 							(mode . markdown-mode)
 							(mode . reader-mode)))
@@ -126,6 +129,10 @@
 
 (use-package geiser-guile
   :after geiser)
+
+(use-package sly
+  :config
+  (setq inferior-lisp-program "/sbin/sbcl"))
 
 (use-package dash)
 (use-package lsp-mode)
@@ -171,10 +178,10 @@ See `cam/inferior-java-mode'."
   (save-buffer)
   (recompile))
 
-(add-hook 'java-mode-hook (lambda () (local-set-key (kbd "C-c C-l") 'cam/run-java)))
-(add-hook 'java-mode-hook (lambda () (local-set-key (kbd "C-x C-s") 'cam/java-save-and-recompile)))
-(add-hook 'java-mode-hook (lambda ()
-			    (setq-local compile-command "ant -emacs -find build.xml")))
+;; (add-hook 'java-mode-hook (lambda () (local-set-key (kbd "C-c C-l") 'cam/run-java)))
+;; (add-hook 'java-mode-hook (lambda () (local-set-key (kbd "C-x C-s") 'cam/java-save-and-recompile)))
+;; (add-hook 'java-mode-hook (lambda ()
+;; 			    (setq-local compile-command "ant -emacs -find build.xml")))
 
 
 (global-set-key (kbd "M-c") 'compile)
@@ -216,9 +223,37 @@ See `cam/inferior-java-mode'."
 				  "* %?\n %t")
 				("i" "Ideas")
 				("ip" "Programming Ideas" entry (file "ideas.org")
-				 "* %?\n %i\n\n %t"))))
+				 "* %?\n %i\n\n %t"))
+	org-html-head ""
+	org-html-head-extra ""
+	org-html-head-include-default-style nil
+	org-html-head-include-scripts nil
+	org-html-preamble nil
+	org-html-postamble nil
+	org-html-use-infojs nil))
+
+(defun cam/start-slideshow ()
+  (interactive)
+  (text-scale-set 4)
+  (org-tree-slide-mode 1))
+
+(defun cam/end-slideshow ()
+  (interactive)
+  (text-scale-set 0)
+  (org-tree-slide-mode 0))
+
+
+(use-package org-tree-slide
+  :after org
+  :bind (("C-c s" . cam/start-slideshow)
+	 ("C-c q" . cam/end-slideshow)))
 
 (use-package markdown-mode)
 
+(defun cam/vector-typst (vector-name)
+  (interactive "sVector Name: ")
+  (insert "underline(" vector-name ")"))
+
 (use-package typst-ts-mode
-  :straight '(:type git :host codeberg :repo "meow_king/typst-ts-mode"))
+  :straight '(:type git :host codeberg :repo "meow_king/typst-ts-mode")
+  :bind (("C-c v" . cam/vector-typst)))
