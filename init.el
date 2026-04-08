@@ -31,37 +31,14 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 
-(use-package elfeed
-  :defer t
-  :bind ("C-c e" . elfeed)
-  :after (emms)
-  :config
-  (setq elfeed-feeds
-	  '(("https://irreal.org/blog/?feed=rss2" blog emacs)
-	    ("http://yummymelon.com/devnull/feeds/all.atom.xml" blog emacs)
-	    ("https://protesilaos.com/codelog.xml" blog emacs)
-	    ("https://protesilaos.com/poems.xml" blog poems)
-	    ("https://protesilaos.com/commentary.xml" blog life)
-	    ("https://shaiyaj.github.io/notes/feed.xml" blog)
-	    ("https://xkcd.com/rss.xml" comic)
-	    ("https://www.smbc-comics.com/comic/rss" comic)
-	    ("https://archlinux.org/feeds/news/" arch linux tech)
-	    ("https://www.debian.org/security/dsa" debian linux tech)
-	    ("https://wolfgirl.dev/blog/rss.xml" blog tech prog)
-	    ("https://izzys.casa/index.xml" blog tech prog)
-	    ("https://faultlore.com/blah/rss.xml" blog tech prog)
-	    ("https://nexy.blog/feed_rss_created.xml" blog tech)
-	    ("https://welltypedwit.ch/rss.xml" tech blog)
-	    ("https://risky.biz/feeds/risky-business-news/" tech security podcast)
-	    ;; Leadhead
-	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UC3_kehZbfRz-KrjXIqeIiPw" blog video)
-	    ;; Wendigoon
-	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UC3cpN6gcJQqcCM6mxRUo_dA" video spooky)
-	    ;; SOG
-	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCtMVHI3AJD4Qk4hcbZnI9ZQ" video blog)
-	    ;; Philosophy Tube
-	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UC2PA-AKmVpU6NKCGtZq_rKQ" video phil)
-	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCctWUfejRybO1cCT6DmIRqQ" video speedrun))))
+(setq newsticker-url-list
+      '(("Polywolf" "https://wolfgirl.dev/blog/rss.xml" nil 3600)
+	("Irreal" "https://irreal.org/blog/?feed=rss2" nil 3600)
+	("Prot -- Poems" "https://protesilaos.com/poems.xml" nil 3600)
+	("Prot -- Programming" "https://protesilaos.com/codelog.xml" nil 3600)
+	("welltypedwitch" "https://welltypedwit.ch/rss.xml" nil 3600)
+	("Arch News" "https://archlinux.org/feeds/news/" nil 3600)
+	("Charles Choi" "http://yummymelon.com/devnull/feeds/all.atom.xml" nil 3600)))
 
 (use-package emms
   :config

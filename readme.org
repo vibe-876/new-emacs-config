@@ -82,42 +82,18 @@ I also like to disable the tool bar, menu bar, and scroll bar, because I work al
 #+end_src
 
 
-[[https://github.com/skeeto/elfeed][elfeed]] is a [[https://en.wikipedia.org/wiki/Rss][RSS]] reader for Emacs.
-It is the best RSS reader I have ever used (which is admittedly a rather short list); it's got some really good tagging and searching filters, and far more importantly, I can easily extend it with elisp.
-As it would happen, I have a few extra procedures written for it.
+I've recently moved from [[https://github.com/skeeto/elfeed][elfeed]] to newsticker, and I'm quite happy with it.
+I'd recommend giving it a try.
 I find RSS to be a much nicer way of interacting with the web than the modern alternative, I'd recommend giving it a try if you've not before.
 #+begin_src elisp
-  (use-package elfeed
-    :defer t
-    :bind ("C-c e" . elfeed)
-    :after (emms)
-    :config
-    (setq elfeed-feeds
-  	  '(("https://irreal.org/blog/?feed=rss2" blog emacs)
-  	    ("http://yummymelon.com/devnull/feeds/all.atom.xml" blog emacs)
-  	    ("https://protesilaos.com/codelog.xml" blog emacs)
-  	    ("https://protesilaos.com/poems.xml" blog poems)
-  	    ("https://protesilaos.com/commentary.xml" blog life)
-  	    ("https://shaiyaj.github.io/notes/feed.xml" blog)
-  	    ("https://xkcd.com/rss.xml" comic)
-  	    ("https://www.smbc-comics.com/comic/rss" comic)
-  	    ("https://archlinux.org/feeds/news/" arch linux tech)
-  	    ("https://www.debian.org/security/dsa" debian linux tech)
-  	    ("https://wolfgirl.dev/blog/rss.xml" blog tech prog)
-  	    ("https://izzys.casa/index.xml" blog tech prog)
-  	    ("https://faultlore.com/blah/rss.xml" blog tech prog)
-  	    ("https://nexy.blog/feed_rss_created.xml" blog tech)
-  	    ("https://welltypedwit.ch/rss.xml" tech blog)
-  	    ("https://risky.biz/feeds/risky-business-news/" tech security podcast)
-  	    ;; Leadhead
-  	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UC3_kehZbfRz-KrjXIqeIiPw" blog video)
-  	    ;; Wendigoon
-  	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UC3cpN6gcJQqcCM6mxRUo_dA" video spooky)
-  	    ;; SOG
-  	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCtMVHI3AJD4Qk4hcbZnI9ZQ" video blog)
-  	    ;; Philosophy Tube
-  	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UC2PA-AKmVpU6NKCGtZq_rKQ" video phil)
-  	    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCctWUfejRybO1cCT6DmIRqQ" video speedrun))))
+  (setq newsticker-url-list
+        '(("Polywolf" "https://wolfgirl.dev/blog/rss.xml" nil 3600)
+  	("Irreal" "https://irreal.org/blog/?feed=rss2" nil 3600)
+  	("Prot -- Poems" "https://protesilaos.com/poems.xml" nil 3600)
+  	("Prot -- Programming" "https://protesilaos.com/codelog.xml" nil 3600)
+  	("welltypedwitch" "https://welltypedwit.ch/rss.xml" nil 3600)
+  	("Arch News" "https://archlinux.org/feeds/news/" nil 3600)
+  	("Charles Choi" "http://yummymelon.com/devnull/feeds/all.atom.xml" nil 3600)))
 #+end_src
 
 ~emms~ is the Emacs MultiMedia System.
