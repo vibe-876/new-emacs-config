@@ -87,13 +87,15 @@ I'd recommend giving it a try.
 I find RSS to be a much nicer way of interacting with the web than the modern alternative, I'd recommend giving it a try if you've not before.
 #+begin_src elisp
   (setq newsticker-url-list
-        '(("Polywolf" "https://wolfgirl.dev/blog/rss.xml" nil 3600)
-  	("Irreal" "https://irreal.org/blog/?feed=rss2" nil 3600)
-  	("Prot -- Poems" "https://protesilaos.com/poems.xml" nil 3600)
-  	("Prot -- Programming" "https://protesilaos.com/codelog.xml" nil 3600)
-  	("welltypedwitch" "https://welltypedwit.ch/rss.xml" nil 3600)
-  	("Arch News" "https://archlinux.org/feeds/news/" nil 3600)
-  	("Charles Choi" "http://yummymelon.com/devnull/feeds/all.atom.xml" nil 3600)))
+        '(("Polywolf" "https://wolfgirl.dev/blog/rss.xml")
+  	("Irreal" "https://irreal.org/blog/?feed=rss2")
+  	("Prot -- Poems" "https://protesilaos.com/poems.xml")
+  	("Prot -- Programming" "https://protesilaos.com/codelog.xml")
+  	("welltypedwitch" "https://welltypedwit.ch/rss.xml")
+  	("Arch News" "https://archlinux.org/feeds/news/")
+  	("Charles Choi" "http://yummymelon.com/devnull/feeds/all.atom.xml")
+  	("stylewarning" "https://www.stylewarning.com/index.xml")
+  	("quote nil" "https://quotenil.com/blog.rss")))
 #+end_src
 
 ~emms~ is the Emacs MultiMedia System.
@@ -338,7 +340,10 @@ If you've never given it a shot, I'd recommend trying it.
   	org-html-head-include-scripts nil
   	org-html-preamble nil
   	org-html-postamble nil
-  	org-html-use-infojs nil))
+  	org-html-use-infojs nil
+  	org-export-with-email t
+  	org-export-with-toc nil))
+
 
   (defun cam/start-slideshow ()
     (interactive)

@@ -32,13 +32,15 @@
 (scroll-bar-mode -1)
 
 (setq newsticker-url-list
-      '(("Polywolf" "https://wolfgirl.dev/blog/rss.xml" nil 3600)
-	("Irreal" "https://irreal.org/blog/?feed=rss2" nil 3600)
-	("Prot -- Poems" "https://protesilaos.com/poems.xml" nil 3600)
-	("Prot -- Programming" "https://protesilaos.com/codelog.xml" nil 3600)
-	("welltypedwitch" "https://welltypedwit.ch/rss.xml" nil 3600)
-	("Arch News" "https://archlinux.org/feeds/news/" nil 3600)
-	("Charles Choi" "http://yummymelon.com/devnull/feeds/all.atom.xml" nil 3600)))
+      '(("Polywolf" "https://wolfgirl.dev/blog/rss.xml")
+	("Irreal" "https://irreal.org/blog/?feed=rss2")
+	("Prot -- Poems" "https://protesilaos.com/poems.xml")
+	("Prot -- Programming" "https://protesilaos.com/codelog.xml")
+	("welltypedwitch" "https://welltypedwit.ch/rss.xml")
+	("Arch News" "https://archlinux.org/feeds/news/")
+	("Charles Choi" "http://yummymelon.com/devnull/feeds/all.atom.xml")
+	("stylewarning" "https://www.stylewarning.com/index.xml")
+	("quote nil" "https://quotenil.com/blog.rss")))
 
 (use-package emms
   :config
@@ -207,7 +209,10 @@ See `cam/inferior-java-mode'."
 	org-html-head-include-scripts nil
 	org-html-preamble nil
 	org-html-postamble nil
-	org-html-use-infojs nil))
+	org-html-use-infojs nil
+	org-export-with-email t
+	org-export-with-toc nil))
+
 
 (defun cam/start-slideshow ()
   (interactive)
