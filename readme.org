@@ -320,6 +320,7 @@ If you've never given it a shot, I'd recommend trying it.
     :config
     (setq org-directory (concat (getenv "HOME") "/Documents/Agenda/")
   	org-agenda-files (list org-directory)
+  	org-agenda-include-diary t
   	org-todo-keywords '((sequence "TODO(t)" "WAIT(w!)" "|" "CANCEL(c!)" "DONE(d!)"))
   	org-default-notes-file (concat (car org-agenda-files) "notes.org")
           org-capture-templates '(("t" "Todo")
