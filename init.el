@@ -194,7 +194,7 @@ See `cam/inferior-java-mode'."
 	org-default-notes-file (concat (car org-agenda-files) "notes.org")
         org-capture-templates '(("t" "Todo")
 				("tt" "Standard Thing" entry (file org-default-notes-file)
-				 "* TODO %?\n %a\n DEADLINE: %^t")
+				 "* TODO %?\n DEADLINE: %^t")
 				("tw" "Work Thing" entry (file org-default-notes-file)
 				 "* TODO %?\n SCHEDULED: %^t")
 				("a" "Assignment" entry (file "assignments.org")
