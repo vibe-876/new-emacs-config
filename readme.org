@@ -361,6 +361,14 @@ If you've never given it a shot, I'd recommend trying it.
     :after org
     :bind (("C-c s" . cam/start-slideshow)
   	 ("C-c q" . cam/end-slideshow)))
+
+  (use-package xenops
+    :after org
+    :config
+    (add-hook 'org-mode-hook #'xenops-mode)
+    (add-hook latex-mode-hook #'xenops-mode)
+    (add-hook 'LaTeX-mode-hook #'xenops-mode)
+    (setq xenops-reveal-on-entry t))
 #+end_src
 
 I rarely use [[https://www.markdownguide.org/][markdown]] myself, but I have a few friends that do, so I keep this installed

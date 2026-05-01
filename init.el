@@ -231,6 +231,14 @@ See `cam/inferior-java-mode'."
   :bind (("C-c s" . cam/start-slideshow)
 	 ("C-c q" . cam/end-slideshow)))
 
+(use-package xenops
+  :after org
+  :config
+  (add-hook 'org-mode-hook #'xenops-mode)
+  (add-hook latex-mode-hook #'xenops-mode)
+  (add-hook 'LaTeX-mode-hook #'xenops-mode)
+  (setq xenops-reveal-on-entry t))
+
 (use-package markdown-mode)
 
 (defun cam/vector-typst (vector-name)
