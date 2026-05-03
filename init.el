@@ -232,11 +232,10 @@ See `cam/inferior-java-mode'."
 	 ("C-c q" . cam/end-slideshow)))
 
 (use-package xenops
-  :after org
   :config
-  (add-hook 'org-mode-hook #'xenops-mode)
-  (add-hook latex-mode-hook #'xenops-mode)
-  (add-hook 'LaTeX-mode-hook #'xenops-mode)
+  ;;(add-hook 'org-mode-hook #'xenops-mode)
+  ;; (add-hook 'latex-mode-hook #'xenops-mode)
+  ;; (add-hook 'LaTeX-mode-hook #'xenops-mode)
   (setq xenops-reveal-on-entry t))
 
 (use-package markdown-mode)
@@ -248,3 +247,15 @@ See `cam/inferior-java-mode'."
 (use-package typst-ts-mode
   :straight '(:type git :host codeberg :repo "meow_king/typst-ts-mode")
   :bind (("C-c v" . cam/vector-typst)))
+
+(defun cam/chmod-shell-script-on-save ()
+  (interactive)
+  (save-buffer)
+  (let ((file (buffer-file-name)))
+    (if file
+	(progn (set-file-modes file #o744)
+	       (message "Buffer saved."))
+      (message "No such file :c ."))))
+
+(add-hook 'sh-mode-hook (lambda ()
+			  (local-set-key (kbd "C-x C-s") 'cam/chmod-shell-script-on-save)))
