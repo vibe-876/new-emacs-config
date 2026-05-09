@@ -93,10 +93,10 @@
 				       ("Unsaved" (modified))))))
 
 (use-package paredit
-  :hook ((emacs-lisp-mode  . enable-paredit-mode)
-	 (clojure-mode     . enable-paredit-mode)
-	 (scheme-mode      . enable-paredit-mode)
-	 (common-lisp-mode . enable-paredit-mode))
+  :hook ((emacs-lisp-mode . enable-paredit-mode)
+	 (clojure-mode    . enable-paredit-mode)
+	 (scheme-mode     . enable-paredit-mode)
+	 (lisp-mode       . enable-paredit-mode))
   :after (cider))
 
 (use-package rainbow-delimiters
