@@ -82,20 +82,24 @@ I also like to disable the tool bar, menu bar, and scroll bar, because I work al
 #+end_src
 
 
-I've recently moved from [[https://github.com/skeeto/elfeed][elfeed]] to newsticker, and I'm quite happy with it.
-I'd recommend giving it a try.
+Elfeed is an RSS reader that I like.
+I also used Newsticker for a bit, but I've come back to Elfeed.
 I find RSS to be a much nicer way of interacting with the web than the modern alternative, I'd recommend giving it a try if you've not before.
 #+begin_src elisp
-  (setq newsticker-url-list
-        '(("Polywolf" "https://wolfgirl.dev/blog/rss.xml")
-  	("Irreal" "https://irreal.org/blog/?feed=rss2")
-  	("Prot -- Poems" "https://protesilaos.com/poems.xml")
-  	("Prot -- Programming" "https://protesilaos.com/codelog.xml")
-  	("welltypedwitch" "https://welltypedwit.ch/rss.xml")
-  	("Arch News" "https://archlinux.org/feeds/news/")
-  	("Charles Choi" "http://yummymelon.com/devnull/feeds/all.atom.xml")
-  	("stylewarning" "https://www.stylewarning.com/index.xml")
-  	("quote nil" "https://quotenil.com/blog.rss")))
+  (use-package elfeed
+    :config
+    (setq elfeed-feeds '("https://wolfgirl.dev/blog/rss.xml"
+  		       "https://rosia.me/feed.xml"
+  		       ("https://vibe-876.github.io/rss.xml" testing)
+  		       "https://irreal.org/blog/?feed=rss2"
+  		       "https://www.scd31.com/posts.rss"
+  		       "https://protesilaos.com/poems.xml"
+  		       "https://protesilaos.com/codelog.xml"
+  		       "https://welltypedwit.ch/rss.xml"
+  		       "https://archlinux.org/feeds/news/"
+  		       "http://yummymelon.com/devnull/feeds/all.atom.xml"
+  		       "https://www.stylewarning.com/index.xml"
+  		       "https://quotenil.com/blog.rss")))
 #+end_src
 
 ~emms~ is the Emacs MultiMedia System.
@@ -165,9 +169,10 @@ As I am a lisp programmer, ~paredit~ is essential for me.
 ~paredit~ does "electric brackets", which for me at least, makes lisp feel completely natural, more so than any other language for thinking, in most cases at least.
 #+begin_src elisp
   (use-package paredit
-    :hook ((emacs-lisp-mode . enable-paredit-mode)
-  	 (clojure-mode    . enable-paredit-mode)
-  	 (scheme-mode     . enable-paredit-mode))
+    :hook ((emacs-lisp-mode  . enable-paredit-mode)
+  	 (clojure-mode     . enable-paredit-mode)
+  	 (scheme-mode      . enable-paredit-mode)
+  	 (common-lisp-mode . enable-paredit-mode))
     :after (cider))
 #+end_src
 
@@ -400,3 +405,8 @@ For ~sh-mode~, this is just a quick bit of Elisp that'll make the file executabl
   			  (local-set-key (kbd "C-x C-s") 'cam/chmod-shell-script-on-save)))
 #+end_src
 
+#+begin_src elisp
+  (use-package website-builder
+    :straight '(:type git :host github :repo "vibe-876/website-builder")
+    :after org)
+#+end_src

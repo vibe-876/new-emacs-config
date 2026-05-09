@@ -31,16 +31,20 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 
-(setq newsticker-url-list
-      '(("Polywolf" "https://wolfgirl.dev/blog/rss.xml")
-	("Irreal" "https://irreal.org/blog/?feed=rss2")
-	("Prot -- Poems" "https://protesilaos.com/poems.xml")
-	("Prot -- Programming" "https://protesilaos.com/codelog.xml")
-	("welltypedwitch" "https://welltypedwit.ch/rss.xml")
-	("Arch News" "https://archlinux.org/feeds/news/")
-	("Charles Choi" "http://yummymelon.com/devnull/feeds/all.atom.xml")
-	("stylewarning" "https://www.stylewarning.com/index.xml")
-	("quote nil" "https://quotenil.com/blog.rss")))
+(use-package elfeed
+  :config
+  (setq elfeed-feeds '("https://wolfgirl.dev/blog/rss.xml"
+		       "https://rosia.me/feed.xml"
+		       ("https://vibe-876.github.io/rss.xml" testing)
+		       "https://irreal.org/blog/?feed=rss2"
+		       "https://www.scd31.com/posts.rss"
+		       "https://protesilaos.com/poems.xml"
+		       "https://protesilaos.com/codelog.xml"
+		       "https://welltypedwit.ch/rss.xml"
+		       "https://archlinux.org/feeds/news/"
+		       "http://yummymelon.com/devnull/feeds/all.atom.xml"
+		       "https://www.stylewarning.com/index.xml"
+		       "https://quotenil.com/blog.rss")))
 
 (use-package emms
   :config
@@ -89,9 +93,10 @@
 				       ("Unsaved" (modified))))))
 
 (use-package paredit
-  :hook ((emacs-lisp-mode . enable-paredit-mode)
-	 (clojure-mode    . enable-paredit-mode)
-	 (scheme-mode     . enable-paredit-mode))
+  :hook ((emacs-lisp-mode  . enable-paredit-mode)
+	 (clojure-mode     . enable-paredit-mode)
+	 (scheme-mode      . enable-paredit-mode)
+	 (common-lisp-mode . enable-paredit-mode))
   :after (cider))
 
 (use-package rainbow-delimiters
@@ -259,3 +264,7 @@ See `cam/inferior-java-mode'."
 
 (add-hook 'sh-mode-hook (lambda ()
 			  (local-set-key (kbd "C-x C-s") 'cam/chmod-shell-script-on-save)))
+
+(use-package website-builder
+  :straight '(:type git :host github :repo "vibe-876/website-builder")
+  :after org)
