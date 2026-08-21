@@ -219,6 +219,7 @@ I've got the [[https://www.gnu.org/software/guile/][Guile]] version installed, b
 We also want common lisp, we <3 all lisps equally.
 #+begin_src elisp
   (use-package sly
+    :after paredit
     :config
     (setq inferior-lisp-program "/sbin/sbcl"))
 #+end_src
@@ -311,6 +312,11 @@ Scala
      'self-insert-command
      minibuffer-local-completion-map)
     (setq sbt:program-options '("-Dsbt.supershell=false")))
+#+end_src
+
+Hare is just a language I've been messing around with, it's pretty fun.
+#+begin_src elisp
+  (use-package hare-mode)
 #+end_src
 
 Where to begin with Org Mode...

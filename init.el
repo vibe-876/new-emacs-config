@@ -115,6 +115,7 @@
   :after geiser)
 
 (use-package sly
+  :after paredit
   :config
   (setq inferior-lisp-program "/sbin/sbcl"))
 
@@ -185,6 +186,8 @@ See `cam/inferior-java-mode'."
    'self-insert-command
    minibuffer-local-completion-map)
   (setq sbt:program-options '("-Dsbt.supershell=false")))
+
+(use-package hare-mode)
 
 (use-package org
   :straight nil
