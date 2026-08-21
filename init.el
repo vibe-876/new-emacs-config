@@ -271,3 +271,7 @@ See `cam/inferior-java-mode'."
 (use-package website-builder
   :straight '(:type git :host github :repo "vibe-876/website-builder")
   :after org)
+
+(use-package ansi-color
+  :straight nil
+  :hook (compilation-filter . ansi-color-compilation-filter))

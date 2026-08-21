@@ -416,3 +416,9 @@ For ~sh-mode~, this is just a quick bit of Elisp that'll make the file executabl
     :straight '(:type git :host github :repo "vibe-876/website-builder")
     :after org)
 #+end_src
+
+#+begin_src elisp
+  (use-package ansi-color
+    :straight nil
+    :hook (compilation-filter . ansi-color-compilation-filter))
+#+end_src
