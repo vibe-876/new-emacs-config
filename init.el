@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t -*-
 (setq package-enable-at-startup nil)
 
 (defvar bootstrap-version)
@@ -16,8 +17,6 @@
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t
       use-package-always-ensure nil)
-
-(server-start)
 
 (use-package magit)
 
@@ -117,7 +116,9 @@
 (use-package sly
   :after paredit
   :config
-  (setq inferior-lisp-program "/sbin/sbcl"))
+  (setq inferior-lisp-program "/sbin/sbcl")
+  ;(setq inferior-lisp-program "/sbin/ecl")
+  )
 
 (use-package dash)
 (use-package lsp-mode)

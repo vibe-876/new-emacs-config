@@ -30,6 +30,7 @@ This does 2 things:
 Straight is a package manager for Emacs, and I prefer it to the standard one.
 It lets me clone packages directly from git repos, which I prefer to the standard method.
 #+begin_src elisp
+  ;;; -*- lexical-binding: t -*-
   (setq package-enable-at-startup nil)
 
   (defvar bootstrap-version)
@@ -53,11 +54,6 @@ It lets me clone packages directly from git repos, which I prefer to the standar
 
 From this point onwards, this document will separated into two sections: Reading, and Writing.
 I've chosen to lay the file out like this because the way I see it, everything that a text editor does can be described by these two operations.
-
-We then start the Emacs Server.
-#+begin_src elisp
-  (server-start)
-#+end_src
 
 * Reading
 [[https://magit.vc/][Magit]] is an amazing git porcelain.
@@ -221,7 +217,9 @@ We also want common lisp, we <3 all lisps equally.
   (use-package sly
     :after paredit
     :config
-    (setq inferior-lisp-program "/sbin/sbcl"))
+    (setq inferior-lisp-program "/sbin/sbcl")
+    ;(setq inferior-lisp-program "/sbin/ecl")
+    )
 #+end_src
 
 
