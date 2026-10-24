@@ -107,11 +107,17 @@ I mainly use it with ~elfeed~, so that I can listen to podcasts, with a simple ~
     (setq emms-player-list '(emms-player-mpv)))
 #+end_src
 
+I use eww for some of my browsing -- it's pretty good if you've never tried it, and don't really care for much of the "nodern web".
+The only real change I have for it is changing the default search engine.
+#+begin_src elisp
+  (setq eww-search-prefix "https://lite.duckduckgo.com/lite")
+#+end_src
+
 Elpher is a gopher and gemini client.
 I've been getting disillusioned with the web recently, and both gopher and gemini have been a breath of fresh air.
 Gopher and gemini are both alternate communication protocols for the internet, and much like RSS, I'd recommend giving them a shot at least once in your life.
 #+begin_src elisp
-  (use-package elpher)
+    (use-package elpher)
 #+end_src
 
 ~ido-mode~ changes buffer searching and switching, making it a lot more efficient.

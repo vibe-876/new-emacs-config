@@ -50,6 +50,8 @@
   (emms-all)
   (setq emms-player-list '(emms-player-mpv)))
 
+(setq eww-search-prefix "https://lite.duckduckgo.com/lite")
+
 (use-package elpher)
 
 (ido-mode 1)
