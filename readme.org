@@ -2,7 +2,7 @@
 :header-args: :session init :tangle init.el
 :END:
 #+title: Emacs Config File
-#+author: Camilla A.
+#+author: Camilla A. Aidan H
 #+startup: overview
 
 
